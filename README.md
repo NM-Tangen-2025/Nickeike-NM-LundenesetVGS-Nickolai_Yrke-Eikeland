@@ -1,0 +1,1 @@
+# Nickeike-NM-LundenesetVGS-Nickolai_Yrke-Eikeland
