@@ -32,16 +32,27 @@ async function fetchEvents() {
             headers: { "Authorization": `Bearer ${apiKey}` }
         });
 
-        const data = await response.json();
-        const eventsContainer = document.getElementById("events-container");
+        if (!response.ok) {
+            throw new Error(`HTTP-feil! Status: ${response.status}`);
+        }
 
+        const data = await response.json();
+        console.log(data); // Sjekk strukturen på responsen
+
+        if (!data.data) {
+            console.error("Feil: Ingen arrangementer funnet!", data);
+            return;
+        }
+
+        const eventsContainer = document.getElementById("events-container");
+        
         data.data.forEach(event => {
             const eventElement = document.createElement("div");
             eventElement.innerHTML = `
-                <h3>${event.attributes.Tittel}</h3>
-                <p>${event.attributes.Ingress}</p>
-                <p><strong>Dato:</strong> ${event.attributes.Dato}</p>
-                <img src="${event.attributes.Bilde.url}" alt="${event.attributes.Tittel}" width="300">
+                <h3>${event.attributes?.Tittel ?? "Ukjent tittel"}</h3>
+                <p>${event.attributes?.Ingress ?? "Ingen ingress tilgjengelig"}</p>
+                <p><strong>Dato:</strong> ${event.attributes?.Dato ?? "Ukjent dato"}</p>
+                <img src="${event.attributes?.Bilde?.url ?? ""}" alt="${event.attributes?.Tittel ?? "Bilde"}" width="300">
             `;
             eventsContainer.appendChild(eventElement);
         });
@@ -74,7 +85,7 @@ async function fetchMap() {
     }
 }
 
-console.log(data);
+
 
 // Kallar på alle funksjonane når nettsida lastast inn
 document.addEventListener("DOMContentLoaded", () => {
