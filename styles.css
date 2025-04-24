@@ -52,12 +52,27 @@ button:focus {
     box-shadow: 0 0 5px #0066cc; /* Legg til en blå glød */
 }
 
+/* Stil for artikler */
+#articles {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#articles h2 {
+    color: #004080;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
 .article {
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -75,5 +90,40 @@ button:focus {
 
 .article p {
     color: #333;
-    line-height: 1.5;
+    line-height: 1.6;
+}
+
+/* Stil for Tall Ships Races-seksjonen */
+#tall-ships-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#tall-ships-info h2 {
+    color: #004080;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#tall-ships-info p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+#tall-ships-info ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+#tall-ships-info ul li {
+    margin-bottom: 10px;
+    color: #004080;
+}
+
+#tall-ships-info ul li strong {
+    color: #0066cc;
 }
