@@ -6,7 +6,7 @@ function cleanText(text) {
     return text.replace(/[#*]+/g, "").trim(); // Fjerner alle # og * og trimmer teksten
 }
 
-// Oppdatert fetchNews-funksjon
+// fetchNews-funksjon
 async function fetchNews() {
     try {
         const response = await fetch(`${apiBaseUrl}/Nyhetsartikler?populate=*`, {
@@ -110,7 +110,7 @@ async function fetchEvents() {
     }
 }
 
-// Oppdatert fetchMap-funksjon
+// fetchMap-funksjon
 async function fetchMap() {
     try {
         const response = await fetch(`${apiBaseUrl}/Lokasjoner?populate=*`, {
@@ -182,7 +182,7 @@ function startCountdown(eventTime, elementId) {
     }
 
     updateCountdown(); // Oppdater umiddelbart
-    const interval = setInterval(updateCountdown, 1000); // Oppdater hvert sekund
+    const interval = setInterval(updateCountdown, 1000); // Oppdater kvart sekund
 }
 
 // Kallar på alle funksjonane når nettsida lastast inn
