@@ -14,7 +14,7 @@ async function fetchNews() {
         });
 
         const data = await response.json();
-        console.log("Nyhetsartikler API-respons:", data); // Logg hele responsen
+        console.log("Nyhetsartikler API-respons:", data); // Logg heile responsen
 
         const newsContainer = document.getElementById("news-container");
 
@@ -63,7 +63,7 @@ async function fetchEvents() {
         });
 
         const data = await response.json();
-        console.log("Arrangementer API-respons:", data); // Logg hele responsen
+        console.log("Arrangementer API-respons:", data); // Logg heile responsen
 
         const eventsContainer = document.getElementById("events-container");
 

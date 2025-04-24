@@ -31,11 +31,11 @@ h2 {
 /* Stil for knappene */
 button {
     background-color: #004080; /* Mørkeblå bakgrunn */
-    color: white; /* Hvit tekst */
+    color: white; /* Kvit tekst */
     border: none; /* Fjern kantlinje */
     border-radius: 5px; /* Runde hjørner */
     padding: 10px 15px; /* Innvendig padding */
-    cursor: pointer; /* Endre musepekeren til hånd */
+    cursor: pointer; /* Endre musepekeren til hand */
     font-size: 14px; /* Juster tekststørrelse */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Jevn overgang */
 }
