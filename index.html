@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tall Ships Races Kristiansand 2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
+    <header>
+        <h1>Tall Ships Races Kristiansand 2025</h1>
+    </header>
+    
+    <main>
+        <section id="news">
+            <h2>Nyhetsartikler</h2>
+            <div id="news-container"></div> <!-- Plass for artikler -->
+        </section>
+
+        <section id="events">
+            <h2>Arrangementer</h2>
+            <div id="events-container"></div> <!-- Plass for arrangementer -->
+        </section>
+
+        <section id="map">
+            <h2>Kart</h2>
+            <div id="map-container" style="height: 500px;"></div> <!-- Plass for kart -->
+        </section>
+    </main>
+
     <script src="main.js"></script>
 </body>
 </html>
