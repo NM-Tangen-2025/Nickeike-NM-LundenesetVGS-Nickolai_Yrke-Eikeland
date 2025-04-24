@@ -78,11 +78,20 @@ async function fetchEvents() {
             const tidspunkt = event.Tidspunkt ?? "Ukjent tidspunkt";
             const imageUrl = event.Bilde?.url ?? "https://via.placeholder.com/300"; // Standardbilde hvis `Bilde` er null
 
+            const formattedTime = new Date(tidspunkt).toLocaleString("no-NO", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false // Bruk 24-timers format
+            });
+
             const eventElement = document.createElement("div");
             eventElement.innerHTML = `
                 <h3>${title}</h3>
                 <p><strong>Type:</strong> ${type}</p>
-                <p><strong>Tidspunkt:</strong> ${new Date(tidspunkt).toLocaleString()}</p>
+                <p><strong>Tidspunkt:</strong> ${formattedTime}</p>
                 <img src="${imageUrl}" alt="${title}" width="300">
             `;
             eventsContainer.appendChild(eventElement);
