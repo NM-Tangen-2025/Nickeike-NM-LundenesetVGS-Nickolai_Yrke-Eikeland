@@ -1,1 +1,1 @@
-print("Hello World!");
+document.getElementById("demo").innerText = "Hello World";
