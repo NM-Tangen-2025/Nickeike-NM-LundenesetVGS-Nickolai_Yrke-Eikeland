@@ -34,4 +34,4 @@ microsoft copilot
 w3schools
 stackoverflow
 
-
+håper at dåke kan lesa denne
