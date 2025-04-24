@@ -22,7 +22,7 @@ Interaktivitet:
 eg skal legja inn visst eg har tid lenkjer til forskjellige sidar som feks instagram og facebook.
 
 Database:
-Eg skal ikkje laga 
+Eg skal ikkje laga ein database
 
 køyring av program(plugin)
 eg køyrer live server
