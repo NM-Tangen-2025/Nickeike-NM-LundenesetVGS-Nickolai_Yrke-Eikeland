@@ -63,7 +63,7 @@ async function fetchEvents() {
         });
 
         const data = await response.json();
-        console.log("Arrangementer API-respons:", data); // Logg heile responsen
+        console.log("Arrangementer API-respons:", data); // Logg hele responsen
 
         const eventsContainer = document.getElementById("events-container");
 
@@ -76,10 +76,10 @@ async function fetchEvents() {
             const type = event.Type ?? "Ukjent type";
             const title = event.Tittel ?? "Ukjent tittel";
             const tidspunkt = event.Tidspunkt ?? "Ukjent tidspunkt";
-            const location = event.Lokasjon?.Navn ?? "Ukjent sted"; // Henter lokasjonsnavn fra Lokasjon-objektet
+            const location = event.Lokasjon?.Navn ?? "Ukjent sted";
             const imageUrl = event.Bilde?.formats?.medium?.url ?? 
                              event.Bilde?.url ?? 
-                             "https://via.placeholder.com/300"; // Standardbilde hvis `Bilde` er null
+                             "https://via.placeholder.com/300";
 
             const formattedTime = new Date(tidspunkt).toLocaleString("no-NO", {
                 year: "numeric",
@@ -87,18 +87,23 @@ async function fetchEvents() {
                 day: "numeric",
                 hour: "2-digit",
                 minute: "2-digit",
-                hour12: false // Bruk 24-timers format
+                hour12: false
             });
 
             const eventElement = document.createElement("div");
+            eventElement.classList.add("event");
             eventElement.innerHTML = `
                 <h3>${title}</h3>
                 <p><strong>Type:</strong> ${type}</p>
                 <p><strong>Tidspunkt:</strong> ${formattedTime}</p>
-                <p><strong>Sted:</strong> ${location}</p> <!-- Viser lokasjonsnavn -->
+                <p><strong>Sted:</strong> ${location}</p>
                 <img src="${imageUrl}" alt="${title}" width="300">
+                <p id="countdown-${event.id}">Laster nedtelling...</p>
             `;
             eventsContainer.appendChild(eventElement);
+
+            // Start nedtelling
+            startCountdown(tidspunkt, `countdown-${event.id}`);
         });
     } catch (error) {
         console.error("Feil ved henting av arrangementer:", error);
@@ -152,6 +157,32 @@ function toggleSection(sectionId) {
     } else {
         section.style.display = "none";
     }
+}
+
+function startCountdown(eventTime, elementId) {
+    const countdownElement = document.getElementById(elementId);
+
+    function updateCountdown() {
+        const now = new Date();
+        const eventDate = new Date(eventTime);
+        const timeDifference = eventDate - now;
+
+        if (timeDifference <= 0) {
+            countdownElement.textContent = "Arrangementet har startet!";
+            clearInterval(interval);
+            return;
+        }
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+        countdownElement.textContent = `Starter om: ${days} dager, ${hours} timer, ${minutes} minutter, ${seconds} sekunder`;
+    }
+
+    updateCountdown(); // Oppdater umiddelbart
+    const interval = setInterval(updateCountdown, 1000); // Oppdater hvert sekund
 }
 
 // Kallar på alle funksjonane når nettsida lastast inn
