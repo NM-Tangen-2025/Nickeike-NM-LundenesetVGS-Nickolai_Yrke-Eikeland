@@ -51,3 +51,29 @@ button:focus {
     outline: none; /* Fjern standard fokusramme */
     box-shadow: 0 0 5px #0066cc; /* Legg til en blå glød */
 }
+
+.article {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article img {
+    display: block;
+    margin: 10px 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.article h3 {
+    color: #004080;
+    margin-bottom: 10px;
+}
+
+.article p {
+    color: #333;
+    line-height: 1.5;
+}
