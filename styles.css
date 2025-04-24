@@ -127,3 +127,37 @@ button:focus {
 #tall-ships-info ul li strong {
     color: #0066cc;
 }
+
+/* Stil for sosiale medier-seksjonen */
+#social-media {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#social-media h2 {
+    color: #004080;
+    margin-bottom: 15px;
+}
+
+#social-media ul {
+    list-style: none;
+    padding: 0;
+}
+
+#social-media ul li {
+    margin: 10px 0;
+}
+
+#social-media ul li a {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#social-media ul li a:hover {
+    text-decoration: underline;
+}

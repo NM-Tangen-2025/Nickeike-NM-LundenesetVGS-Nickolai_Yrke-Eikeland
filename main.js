@@ -76,7 +76,10 @@ async function fetchEvents() {
             const type = event.Type ?? "Ukjent type";
             const title = event.Tittel ?? "Ukjent tittel";
             const tidspunkt = event.Tidspunkt ?? "Ukjent tidspunkt";
-            const imageUrl = event.Bilde?.url ?? "https://via.placeholder.com/300"; // Standardbilde hvis `Bilde` er null
+            const location = event.Lokasjon?.Navn ?? "Ukjent sted"; // Henter lokasjonsnavn fra Lokasjon-objektet
+            const imageUrl = event.Bilde?.formats?.medium?.url ?? 
+                             event.Bilde?.url ?? 
+                             "https://via.placeholder.com/300"; // Standardbilde hvis `Bilde` er null
 
             const formattedTime = new Date(tidspunkt).toLocaleString("no-NO", {
                 year: "numeric",
@@ -92,6 +95,7 @@ async function fetchEvents() {
                 <h3>${title}</h3>
                 <p><strong>Type:</strong> ${type}</p>
                 <p><strong>Tidspunkt:</strong> ${formattedTime}</p>
+                <p><strong>Sted:</strong> ${location}</p> <!-- Viser lokasjonsnavn -->
                 <img src="${imageUrl}" alt="${title}" width="300">
             `;
             eventsContainer.appendChild(eventElement);
@@ -156,4 +160,3 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchEvents();
     fetchMap();
 });
-
