@@ -63,7 +63,7 @@ async function fetchEvents() {
         });
 
         const data = await response.json();
-        console.log("Arrangementer API-respons:", data); // Logg hele responsen
+        console.log("Arrangementer API-respons:", data); // Logg heile responsen
 
         const eventsContainer = document.getElementById("events-container");
 
@@ -118,7 +118,7 @@ async function fetchMap() {
         });
 
         const data = await response.json();
-        console.log("Lokasjoner API-respons:", data); // Logg hele responsen
+        console.log("Lokasjoner API-respons:", data); // Logg heile responsen
 
         if (!data.data || !Array.isArray(data.data)) {
             console.error("Feil: Ingen lokasjoner funnet!", data);
