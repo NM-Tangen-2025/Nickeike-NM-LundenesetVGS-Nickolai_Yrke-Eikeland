@@ -9,32 +9,44 @@ async function fetchNews() {
         });
 
         const data = await response.json();
-        console.log("Nyhetsartikler API-respons:", data);
+        console.log("Nyhetsartikler API-respons:", data); // Logg hele responsen
 
         const newsContainer = document.getElementById("news-container");
 
         if (!data.data || !Array.isArray(data.data)) {
             console.error("Feil: Ingen nyhetsartikler funnet!", data);
+            newsContainer.innerHTML = "<p>Ingen nyhetsartikler tilgjengelig.</p>";
             return;
         }
 
         data.data.forEach(article => {
-            const title = article.attributes?.Tittel ?? "Ukjent tittel";
-            const ingress = article.attributes?.Ingress ?? "Ingen ingress tilgjengelig";
-            const imageUrl = article.attributes?.Bilde?.formats?.medium?.url ?? 
-                             article.attributes?.Bilde?.url ?? 
+            const title = article.Tittel ?? "Ukjent tittel";
+            const ingress = article.Ingress ?? "Ingen ingress tilgjengelig";
+            const date = new Date(article.Dato).toLocaleDateString("no-NO", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+            const content = article.Innhold ?? "Ingen innhold tilgjengelig.";
+            const imageUrl = article.Bilde?.formats?.medium?.url ?? 
+                             article.Bilde?.url ?? 
                              "https://via.placeholder.com/300";
 
             const articleElement = document.createElement("div");
+            articleElement.classList.add("article");
             articleElement.innerHTML = `
                 <h3>${title}</h3>
+                <p><strong>Dato:</strong> ${date}</p>
                 <p>${ingress}</p>
                 <img src="${imageUrl}" alt="${title}" width="300">
+                <p>${content}</p>
             `;
             newsContainer.appendChild(articleElement);
         });
     } catch (error) {
         console.error("Feil ved henting av nyhetsartikler:", error);
+        const newsContainer = document.getElementById("news-container");
+        newsContainer.innerHTML = "<p>Kunne ikke laste nyhetsartikler.</p>";
     }
 }
 
@@ -112,6 +124,15 @@ async function fetchMap() {
         });
     } catch (error) {
         console.error("Feil ved henting av kartdata:", error);
+    }
+}
+
+function toggleSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section.style.display === "none") {
+        section.style.display = "block";
+    } else {
+        section.style.display = "none";
     }
 }
 
