@@ -9,12 +9,12 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
-    <header>
+    <header class="fade-in">
         <h1>Tall Ships Races Kristiansand 2025</h1>
     </header>
     
     <main>
-        <section id="news">
+        <section id="news" class="fade-in">
             <h2>
                 Nyhetsartikler
                 <button onclick="toggleSection('news-container')">Vis/Skjul</button>
@@ -22,7 +22,7 @@
             <div id="news-container"></div> <!-- Plass for artikler -->
         </section>
 
-        <section id="events">
+        <section id="events" class="fade-in">
             <h2>
                 Arrangementer
                 <button onclick="toggleSection('events-container')">Vis/Skjul</button>
@@ -30,7 +30,7 @@
             <div id="events-container" class="events"></div> <!-- Plass for arrangementer -->
         </section>
 
-        <section id="map">
+        <section id="map" class="fade-in">
             <h2>
                 Kart
                 <button onclick="toggleSection('map-container')">Vis/Skjul</button>
@@ -38,7 +38,7 @@
             <div id="map-container" style="height: 500px;"></div> <!-- Plass for kart -->
         </section>
 
-        <section id="social-media">
+        <section id="social-media" class="fade-in">
             <h2>Følg oss på sosiale medier</h2>
             <ul>
                 <li>
