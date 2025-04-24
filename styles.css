@@ -18,10 +18,10 @@ section {
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+section div {
     transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s ease-out forwards;
 }
 
 h2 {
@@ -37,6 +37,7 @@ button {
     padding: 10px 15px; /* Innvendig padding */
     cursor: pointer; /* Endre musepekeren til hånd */
     font-size: 14px; /* Juster tekststørrelse */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Jevn overgang */
 }
 
 /* Hover-effekt for knappene */
@@ -159,38 +160,4 @@ button:focus {
 
 #social-media ul li a:hover {
     text-decoration: underline;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Stil for skjulte seksjoner */
-.hidden {
-    height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.5s ease; /* Overgang for høyde og synlighet */
-}
-
-/* Stil for synlige seksjoner */
-.visible {
-    height: auto;
-    opacity: 1;
-    transition: all 0.5s ease; /* Overgang for høyde og synlighet */
-}
-
-/* Stil for elementer som skal fade inn */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
