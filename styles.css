@@ -196,3 +196,16 @@ button:focus {
     color: #333;
     line-height: 1.6;
 }
+
+/* Startstil for fade-in-elementer */
+.fade-in {
+    opacity: 0; /* Start som usynlig */
+    transform: translateY(20px); /* Flytt litt ned */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Jevn overgang */
+}
+
+/* Når elementet blir synlig */
+.fade-in.visible {
+    opacity: 1; /* Gjør elementet synlig */
+    transform: translateY(0); /* Flytt til opprinnelig posisjon */
+}
