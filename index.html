@@ -15,17 +15,26 @@
     
     <main>
         <section id="news">
-            <h2>Nyhetsartikler</h2>
+            <h2>
+                Nyhetsartikler
+                <button onclick="toggleSection('news-container')">Vis/Skjul</button>
+            </h2>
             <div id="news-container"></div> <!-- Plass for artikler -->
         </section>
 
         <section id="events">
-            <h2>Arrangementer</h2>
+            <h2>
+                Arrangementer
+                <button onclick="toggleSection('events-container')">Vis/Skjul</button>
+            </h2>
             <div id="events-container"></div> <!-- Plass for arrangementer -->
         </section>
 
         <section id="map">
-            <h2>Kart</h2>
+            <h2>
+                Kart
+                <button onclick="toggleSection('map-container')">Vis/Skjul</button>
+            </h2>
             <div id="map-container" style="height: 500px;"></div> <!-- Plass for kart -->
         </section>
     </main>
