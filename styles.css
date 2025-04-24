@@ -31,11 +31,11 @@ h2 {
 /* Stil for knappene */
 button {
     background-color: #004080; /* Mørkeblå bakgrunn */
-    color: white; /* Hvit tekst */
+    color: white; /* Kvit tekst */
     border: none; /* Fjern kantlinje */
     border-radius: 5px; /* Runde hjørner */
     padding: 10px 15px; /* Innvendig padding */
-    cursor: pointer; /* Endre musepekeren til hånd */
+    cursor: pointer; /* Endre musepekeren til hand */
     font-size: 14px; /* Juster tekststørrelse */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Jevn overgang */
 }
@@ -160,4 +160,39 @@ button:focus {
 
 #social-media ul li a:hover {
     text-decoration: underline;
+}
+
+/* Stil for arrangementer */
+#events-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event img {
+    display: block;
+    margin: 10px 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.event h3 {
+    color: #004080;
+    margin-bottom: 10px;
+}
+
+.event p {
+    color: #333;
+    line-height: 1.6;
 }
