@@ -203,5 +203,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fadeElements.forEach((el) => observer.observe(el));
 });
-
-console.log("JavaScript-Koden er lasta inn og klar til bruk!")
