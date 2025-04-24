@@ -9,17 +9,21 @@ async function fetchNews() {
         });
 
         const data = await response.json();
+        console.log("Nyhetsartikler API-respons:", data);
+
         const newsContainer = document.getElementById("news-container");
 
         if (!data.data || !Array.isArray(data.data)) {
-            console.error("Feil: Ingen nyheitsartiklar funnet!", data);
+            console.error("Feil: Ingen nyhetsartikler funnet!", data);
             return;
         }
 
         data.data.forEach(article => {
             const title = article.attributes?.Tittel ?? "Ukjent tittel";
             const ingress = article.attributes?.Ingress ?? "Ingen ingress tilgjengelig";
-            const imageUrl = article.attributes?.Bilde?.url ?? "";
+            const imageUrl = article.attributes?.Bilde?.formats?.medium?.url ?? 
+                             article.attributes?.Bilde?.url ?? 
+                             "https://via.placeholder.com/300";
 
             const articleElement = document.createElement("div");
             articleElement.innerHTML = `
@@ -30,7 +34,7 @@ async function fetchNews() {
             newsContainer.appendChild(articleElement);
         });
     } catch (error) {
-        console.error("Feil ved henting av nyheitsartikler:", error);
+        console.error("Feil ved henting av nyhetsartikler:", error);
     }
 }
 
@@ -41,27 +45,28 @@ async function fetchEvents() {
             headers: { "Authorization": `Bearer ${apiKey}` }
         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP-feil! Status: ${response.status}`);
-        }
-
         const data = await response.json();
-        console.log(data); // Sjekk strukturen på responsen
+        console.log("Arrangementer API-respons:", data); // Logg hele responsen
 
-        if (!data.data) {
+        const eventsContainer = document.getElementById("events-container");
+
+        if (!data.data || !Array.isArray(data.data)) {
             console.error("Feil: Ingen arrangementer funnet!", data);
             return;
         }
 
-        const eventsContainer = document.getElementById("events-container");
-        
         data.data.forEach(event => {
+            const type = event.Type ?? "Ukjent type";
+            const title = event.Tittel ?? "Ukjent tittel";
+            const tidspunkt = event.Tidspunkt ?? "Ukjent tidspunkt";
+            const imageUrl = event.Bilde?.url ?? "https://via.placeholder.com/300"; // Standardbilde hvis `Bilde` er null
+
             const eventElement = document.createElement("div");
             eventElement.innerHTML = `
-                <h3>${event.attributes?.Tittel ?? "Ukjent tittel"}</h3>
-                <p>${event.attributes?.Ingress ?? "Ingen ingress tilgjengelig"}</p>
-                <p><strong>Dato:</strong> ${event.attributes?.Dato ?? "Ukjent dato"}</p>
-                <img src="${event.attributes?.Bilde?.url ?? ""}" alt="${event.attributes?.Tittel ?? "Bilde"}" width="300">
+                <h3>${title}</h3>
+                <p><strong>Type:</strong> ${type}</p>
+                <p><strong>Tidspunkt:</strong> ${new Date(tidspunkt).toLocaleString()}</p>
+                <img src="${imageUrl}" alt="${title}" width="300">
             `;
             eventsContainer.appendChild(eventElement);
         });
@@ -78,26 +83,32 @@ async function fetchMap() {
         });
 
         const data = await response.json();
-        const mapContainer = document.getElementById("map-container");
+        console.log("Lokasjoner API-respons:", data); // Logg hele responsen
 
         if (!data.data || !Array.isArray(data.data)) {
             console.error("Feil: Ingen lokasjoner funnet!", data);
             return;
         }
 
-        data.data.forEach(location => {
-            const name = location.attributes?.Navn ?? "Ukjent navn";
-            const latitude = location.attributes?.Posisjon?.Breddegrad ?? "Ukjent breddegrad";
-            const longitude = location.attributes?.Posisjon?.Lengdegrad ?? "Ukjent lengdegrad";
-            const imageUrl = location.attributes?.Bilde?.url ?? "";
+        // Initialiser Leaflet-kartet
+        const map = L.map('map-container').setView([58.14455742654124, 8.00331894316615], 13); // Senter på første lokasjon
 
-            const locationElement = document.createElement("div");
-            locationElement.innerHTML = `
-                <h3>${name}</h3>
-                <p>Posisjon: ${latitude}, ${longitude}</p>
-                <img src="${imageUrl}" alt="${name}" width="300">
-            `;
-            mapContainer.appendChild(locationElement);
+        // Legg til OpenStreetMap-fliser
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Legg til markører for hver lokasjon
+        data.data.forEach(location => {
+            const name = location.Navn ?? "Ukjent navn";
+            const latitude = parseFloat(location.Posisjon?.Breddegrad);
+            const longitude = parseFloat(location.Posisjon?.Lengdegrad);
+
+            if (!isNaN(latitude) && !isNaN(longitude)) {
+                L.marker([latitude, longitude])
+                    .addTo(map)
+                    .bindPopup(`<h3>${name}</h3><p>Posisjon: ${latitude}, ${longitude}</p>`);
+            }
         });
     } catch (error) {
         console.error("Feil ved henting av kartdata:", error);
