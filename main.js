@@ -1,6 +1,11 @@
 const apiBaseUrl = "https://fortunate-bear-715099df12.strapiapp.com/api";
 const apiKey = "1330d7d0a7e52fbcf4779861a6948373dff5f06b8bbce4cc0d08025276bb45ce3114590200d5b3cb7d0a856325f55c71e170fc2f2e4508102712e4730fbfb075c745056641f618bee2e54bf7ccdb1a56c6c4e89d60ef7c25f728198bde97d7e4cfbb773f63336580c64084350f57ffba8a15e289b1016cbe4df256bc2928bd50";
 
+// Funksjon for å fjerne uønskede tegn som ### og **
+function cleanText(text) {
+    return text.replace(/[#*]+/g, "").trim(); // Fjerner alle # og * og trimmer teksten
+}
+
 // Oppdatert fetchNews-funksjon
 async function fetchNews() {
     try {
@@ -20,14 +25,14 @@ async function fetchNews() {
         }
 
         data.data.forEach(article => {
-            const title = article.Tittel ?? "Ukjent tittel";
-            const ingress = article.Ingress ?? "Ingen ingress tilgjengelig";
+            const title = cleanText(article.Tittel ?? "Ukjent tittel");
+            const ingress = cleanText(article.Ingress ?? "Ingen ingress tilgjengelig");
             const date = new Date(article.Dato).toLocaleDateString("no-NO", {
                 year: "numeric",
                 month: "long",
                 day: "numeric"
             });
-            const content = article.Innhold ?? "Ingen innhold tilgjengelig.";
+            const content = cleanText(article.Innhold ?? "Ingen innhold tilgjengelig.");
             const imageUrl = article.Bilde?.formats?.medium?.url ?? 
                              article.Bilde?.url ?? 
                              "https://via.placeholder.com/300";
