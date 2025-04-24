@@ -12,4 +12,4 @@ brukte KI og for å få inspirasjoner og ideer
 API eg bruker leaflet til kart som ein ekstern API til denne oppgåva 
 resten av API-ene er dei me fekk i oppgåva
 
-Andre kjelder eg har brukt er dei eg skreiv som del 1
+Andre kjelder eg har brukt er dei eg skreiv på del 1
