@@ -74,9 +74,12 @@ async function fetchMap() {
     }
 }
 
+console.log(data);
+
 // Kallar på alle funksjonane når nettsida lastast inn
 document.addEventListener("DOMContentLoaded", () => {
     fetchNews();
     fetchEvents();
     fetchMap();
 });
+
