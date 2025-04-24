@@ -10,3 +10,4 @@ eg har brukt KI i dette prosjektet men eg har skrevet og forandra ein god del sj
 brukte KI og for å få inspirasjoner og ideer
 
 API eg bruker leaflet til kart som ein ekstern API til denne oppgåva 
+resten av API-ene er dei me fekk i oppgåva
