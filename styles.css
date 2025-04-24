@@ -27,3 +27,27 @@ section div {
 h2 {
     color: #004080;
 }
+
+/* Stil for knappene */
+button {
+    background-color: #004080; /* Mørkeblå bakgrunn */
+    color: white; /* Hvit tekst */
+    border: none; /* Fjern kantlinje */
+    border-radius: 5px; /* Runde hjørner */
+    padding: 10px 15px; /* Innvendig padding */
+    cursor: pointer; /* Endre musepekeren til hånd */
+    font-size: 14px; /* Juster tekststørrelse */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Jevn overgang */
+}
+
+/* Hover-effekt for knappene */
+button:hover {
+    background-color: #0066cc; /* Lysere blå ved hover */
+    transform: scale(1.05); /* Liten zoom-effekt */
+}
+
+/* Fokus-effekt for knappene */
+button:focus {
+    outline: none; /* Fjern standard fokusramme */
+    box-shadow: 0 0 5px #0066cc; /* Legg til en blå glød */
+}
