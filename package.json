@@ -4,7 +4,7 @@
   "description": "For å Køyre index.html så bruker eg live server plugin For å lasta inn live server så må du trykja på extentions(Ctrl+Shift+X) også må du søkje på live server og trykja på installer/download(add extention) det kan hende at du må restarte vs code igjen Så ser du nede mot høgre hjørnet at det er ein knapp som det står \"Go Live\" Du går til index.html og trykker på \"Go Live\"  Då er du inn på sida",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/NM-Tangen-2025/Nickeike-NM-LundenesetVGS-Nickolai_Yrke-Eikeland/issues"
   },
-  "homepage": "https://github.com/NM-Tangen-2025/Nickeike-NM-LundenesetVGS-Nickolai_Yrke-Eikeland#readme"
+  "homepage": "https://github.com/NM-Tangen-2025/Nickeike-NM-LundenesetVGS-Nickolai_Yrke-Eikeland#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
